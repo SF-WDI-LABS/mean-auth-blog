@@ -43,7 +43,7 @@ app.get('/api/posts', postsCtrl.index);
 /*
  * Catch All Route
  */
-app.get(['/', '/signup', '/login', '/logout', '/profile'], function (req, res) {
+app.get(['/', '/signup', '/login', '/logout', '/profile', '/posts*'], function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
