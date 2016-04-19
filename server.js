@@ -23,28 +23,21 @@ app.use(logger('dev'));
  * Auth Routes
  */
 
-app.post('/auth/signup', controllers.users.signup);
-app.post('/auth/login', controllers.users.login);
-
-app.get('/api/me', auth.ensureAuthenticated, controllers.users.showCurrentUser);
-app.put('/api/me', auth.ensureAuthenticated, controllers.users.updateCurrentUser);
+var usersCtrl = controllers.users;
+app.post('/auth/signup', usersCtrl.signup);
+app.post('/auth/login', usersCtrl.login);
+app.get('/api/me', auth.ensureAuthenticated, usersCtrl.showCurrentUser);
+app.put('/api/me', auth.ensureAuthenticated, usersCtrl.updateCurrentUser);
 
 /*
  * API Routes
  */
 
-app.get('/api/posts', function (req, res) {
-  res.json([
-  {
-    title: "Hardcoded Title",
-    content: "Here is some great hardcoded content for the body of a blog post. Happy coding!"
-  },
-  {
-    title: "Another Post",
-    content: "MEAN stack is the best stack."
-  }
-  ]);
-});
+var postsCtrl = controllers.posts;
+app.get('/api/posts', postsCtrl.index);
+// app.get('/api/posts/:id', postsCtrl.show);
+// app.put('/api/posts', postsCtrl.update);
+// app.delete('/api/posts/:id', postsCtrl.destroy);
 
 
 /*

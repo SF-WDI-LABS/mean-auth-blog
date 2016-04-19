@@ -52,6 +52,7 @@ function updateCurrentUser(req, res) {
 function showCurrentUser (req, res) {
   User.findById(req.user, function (err, user) {
     res.send(user);
+    // res.send(user.populate('posts'));
   });
 }
 
