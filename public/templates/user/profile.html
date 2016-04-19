@@ -1,0 +1,21 @@
+<h3>{{main.currentUser.displayName}}</h3>
+<hr>
+<p><strong>Username:</strong> {{main.currentUser.displayName}}</p>
+<p><strong>Email:</strong> {{main.currentUser.email}}</p>
+<p><strong>Joined:</strong> {{main.currentUser.created}}</p>
+<p><strong>Posts:</strong> {{main.currentUser.posts.length || 0}}</p>
+
+<hr>
+<a href="#" ng-click="profileCtrl.showEditForm=true" ng-hide="profileCtrl.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
+
+<!-- TODO -->
+<form ng-submit="profileCtrl.updateProfile()" ng-show="profileCtrl.showEditForm">
+  <div class="form-group">
+    <input type="text" ng-model="profileCtrl.new_profile.displayName" class="form-control" placeholder="Username">
+  </div>
+  <!-- TODO #11 -->
+  <div class="form-group">
+    <input type="text" ng-model="profileCtrl.new_profile.email" class="form-control" placeholder="Email">
+  </div>
+  <input type="submit" value="Save Profile" class="btn btn-block btn-info">
+</form>

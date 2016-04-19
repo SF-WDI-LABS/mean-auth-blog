@@ -1,16 +1,15 @@
 <h2>Microblog</h2>
 <hr>
-<p ng-if="home.posts.length === 0">No posts yet.</p>
+<p ng-if="!home.posts.length">No posts yet.</p>
 
-<div ng-if="home.posts.length > 0">
+<div ng-if="home.posts.length">
 	<div ng-repeat="post in home.posts">
 		<p><strong>{{post.title}}</strong> - {{post.content}}</p><br>
 	</div>
 </div>
 
-<div ng-show="main.currentUser()">
+<div ng-show="main.currentUser.isLoggedIn()">
 	<br>
 	<h4>Add New Post</h4>
 	<hr>
-	<!-- TODO #15: Post Form here -->
 </div>
