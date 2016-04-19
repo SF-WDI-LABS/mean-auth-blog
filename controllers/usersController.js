@@ -37,7 +37,6 @@ function signup(req, res) {
 }
 
 function updateCurrentUser(req, res) {
-  console.log(req.user)
   User.findById(req.user, function (err, user) {
     if (!user) {
       return res.status(400).send({ message: 'User not found.' });
@@ -53,7 +52,7 @@ function updateCurrentUser(req, res) {
 
 function showCurrentUser (req, res) {
   User.findById(req.user, function (err, user) {
-    res.send(user.populate('posts'));
+    res.send(user);
   });
 }
 
