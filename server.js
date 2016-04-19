@@ -3,6 +3,7 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    logger = require('morgan'),
     auth = require('./middleware/auth'),
     controllers = require("./controllers");
 
@@ -15,6 +16,9 @@ app.use(bodyParser.json());
 
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
+
+// log api requests
+app.use(logger('dev'));
 
 // connect to mongodb
 mongoose.connect('mongodb://localhost/angular_auth');
