@@ -3,22 +3,17 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcryptjs');
 
 var userSchema = new Schema({
-  created: { type: Date },
+  created: { type: Date, default: Date.now },
   updated: { type: Date },
   email: { type: String, unique: true, lowercase: true },
   password: { type: String, select: false },
   displayName: String,
-  // TODO #12
   picture: String
 });
 
 userSchema.pre('save', function (next) {
-  // set created and updated
-  now = new Date();
-  this.updated = now;
-  if (!this.created) {
-    this.created = now;
-  }
+  // bump date updated
+  this.updated = Date.now();
 
   // encrypt password
   var user = this;

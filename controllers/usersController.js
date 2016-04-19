@@ -23,7 +23,6 @@ function signup(req, res) {
     }
     var user = new User({
       displayName: req.body.displayName,
-      username: req.body.username,
       email: req.body.email,
       password: req.body.password
     });
