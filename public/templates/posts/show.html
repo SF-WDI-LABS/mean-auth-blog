@@ -1,4 +1,3 @@
-<!-- PostsShowController as postsShowCtrl -->
-<h2>{{"title..."}}</h2>
-<p>{{"content..."}}</p>
-<a class="btn btn-primary" ng-href="/posts/{{"_id..."}}/edit">Edit Post</a>
+<h2>{{postsShowCtrl.post.title}}</h2>
+<p>{{postsShowCtrl.post.content}}</p>
+<a class="btn btn-primary" ng-href="/posts/{{postsShowCtrl.post._id}}/edit">Edit Post</a>
