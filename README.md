@@ -19,6 +19,8 @@ Please familiarize yourself with [Satellizer](https://github.com/sahat/satellize
 
 1. In one Terminal window, run `mongod`, and in another, run `nodemon`.
 
+1. Run the seed tasks (`node seed.js`) to create a default user and some posts.
+
 1. Navigate to `localhost:9000` in the browser. You should see an empty page and an angry red error message in the Chrome console.
 
   > You should see `Error: ENOENT, no such file or directory '.env'` in your terminal
@@ -85,6 +87,9 @@ To begin, let's create a new angular controller, template, and route for creatin
     * and the server should respond with the newly created post and `_id` (e.g. 12345)
     * and the user should be redirect to e.g. `/posts/12345`.
 
+<!-- TODO controller hint -->
+<!-- TODO controller html hint -->
+
 #### PostsShowController (`posts-show.controller.js`)
   * When a user visits `/posts/12345` on the client...
     * they should make an `$http` request to `GET /api/posts/12345`...
@@ -97,6 +102,9 @@ To begin, let's create a new angular controller, template, and route for creatin
       * and the `destroy()` methods should make an `$http` request to `DELETE /api/posts/12345`
       * and on success, be redirected to `/` or `/posts` (posts index).
       * BONUS: and see the message "Successfully deleted post" below the navbar.
+
+<!-- TODO controller hint -->
+<!-- TODO controller html hint -->
 
 #### PostsEditController (`posts-edit.controller.js`)
   * When a user visits `/posts/12345/edit` on the client...
@@ -116,6 +124,9 @@ To begin, let's create a new angular controller, template, and route for creatin
       * and the `destroy()` method should make an `$http` delete request to the server
       * and on success, redirect the user to `/` or `/posts` (index)
       * BONUS: and a pop-up, confirmation dialog that says "Are you sure you want to delete this post?"
+
+<!-- TODO controller hint -->
+<!-- TODO controller html hint -->
 
 ## Authorization
 ##### Protecting Server Routes
