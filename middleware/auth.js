@@ -21,7 +21,7 @@ function ensureAuthenticated(req, res, next) {
   if (payload.exp <= moment().unix()) {
     return res.status(401).send({ message: 'Token has expired.' });
   }
-  req.user_id = payload.sub;
+  req.user_id = payload.user_id;
   next();
 }
 
@@ -30,7 +30,7 @@ function ensureAuthenticated(req, res, next) {
 */
 function createJWT(user) {
   var payload = {
-    sub: user._id, // required by satellizer
+    user_id: user._id, // required by satellizer
     displayName: user.displayName,
     email: user.email,
     iat: moment().unix(),
