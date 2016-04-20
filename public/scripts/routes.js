@@ -49,6 +49,11 @@ function configRoutes($routeProvider, $locationProvider) {
       controller: 'PostsIndexController',
       controllerAs: 'postsIndexCtrl'
     })
+    .when('/posts/new', {
+      templateUrl: 'templates/posts/new.html',
+      controller: 'PostsNewController',
+      controllerAs: 'postsNewCtrl'
+    })
     .otherwise({redirectTo: '/'});
 
 
