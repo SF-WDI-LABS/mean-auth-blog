@@ -1,9 +1,9 @@
 # <img src="https://cloud.githubusercontent.com/assets/7833470/10899314/63829980-8188-11e5-8cdd-4ded5bcb6e36.png" height="60"> MEAN Auth Seed - Protected Blog Posts
 
 **Objective:** Your goal is to add a blog `posts` resource to the following application using *protected* client-side and server-side routes.
-  * **DONE**: Only a logged in user should be able to hit API endpoints for creating, updating, and destroying blog posts (on the server).
-  * **TODO**: Only a logged in user should be able to see the forms and buttons for creating, updating, and destroying blog posts (on the client).
-  * **TODO**: A user should only be able to edit or delete _their own_ blog posts (on the client). They should not see options to edit or delete on posts that do not belong to them.
+  * Only a logged in user should be able to hit API endpoints for creating, updating, and destroying blog posts (on the server). **DONE**
+  * Only a logged in user should be able to see the forms and buttons for creating, updating, and destroying blog posts (on the client). **TODO**
+  * A user should only be able to edit or delete _their own_ blog posts (on the client). They should not see options to edit or delete on posts that do not belong to them. **TODO**
 
 Please familiarize yourself with [Satellizer](https://github.com/sahat/satellizer#authloginuser-options) and the file `middleware/auth.js` before beginning. Try to answer the following questions:
   * What is a JWT token?
@@ -65,8 +65,7 @@ To begin, let's create a new angular controller, template, and route for creatin
     * and the user should be redirect to e.g. `/posts/12345`.
 
 <details>
-<summary>**`PostsNewController` Solution** (Click Here)</summary>
-<br>
+<summary>Javascript Solution (Click Here)</summary>
 ```js
 PostsNewController.$inject = ["$location", "$http"]; // minification protection
 function PostsNewController ($location, $http) {
@@ -95,8 +94,7 @@ function PostsNewController ($location, $http) {
 </details>
 
 <details>
-<summary>**`PostsNewController` Solution** (Click Here)</summary>
-<br>
+<summary>HTML Solution (Click Here)</summary>
 ```html
 <form ng-submit="postsNewCtrl.create()">
   <div class="form-group">
@@ -125,8 +123,7 @@ function PostsNewController ($location, $http) {
       * BONUS: and see the message "Successfully deleted post" below the navbar.
 
 <details>
-<summary>**`PostsShowController` Solution** (Click Here)</summary>
-<br>
+<summary>Javascript Solution (Click Here)</summary>
 ```js
 PostsShowController.$inject = ["$location", "$http", "$routeParams"]; // minification protection
 function PostsShowController ($location, $http, $routeParams) {
@@ -158,8 +155,7 @@ function PostsShowController ($location, $http, $routeParams) {
 </details>
 
 <details>
-<summary>**`PostsShowController` Solution** (Click Here)</summary>
-<br>
+<summary>HTML Solution (Click Here)</summary>
 ```html
 <h2>{{postsShowCtrl.post.title}}</h2>
 <p>{{postsShowCtrl.post.content}}</p>
@@ -187,8 +183,7 @@ function PostsShowController ($location, $http, $routeParams) {
       * BONUS: and a pop-up, confirmation dialog that says "Are you sure you want to delete this post?"
 
 <details>
-<summary>**`PostsEditController` Solution** (Click Here)</summary>
-<br>
+<summary>Javascript Solution (Click Here)</summary>
 ```js
 PostsEditController.$inject = ["$location", "$http", "$routeParams"]; // minification protection
 function PostsEditController ($location, $http, $routeParams) {
@@ -250,8 +245,7 @@ function PostsEditController ($location, $http, $routeParams) {
 </details>
 
 <details>
-<summary>**`PostsEditController` Solution** (Click Here)</summary>
-<br>
+<summary>HTML Solution (Click Here)</summary>
 ```html
 <div class="pull-right col-xl-4">
   <a class="btn btn-warning col-xl-2" ng-href="/">Discard Changes</a>
@@ -275,8 +269,7 @@ function PostsEditController ($location, $http, $routeParams) {
 You will want to use `auth.ensureAuthenticated` (see `middleware/auth.js`) in the route to find the current user (i.e. so that you can use `req.user` to access the current user).
 
 <details>
-<summary>**Protected Server Routes Hint** (Click Here)</summary>
-<br>
+<summary>Protected Server Routes Hint (Click Here)</summary>
 ```js
 // server.js
 app.post('/api/posts', auth.ensureAuthenticated, postsCtrl.create);
@@ -290,8 +283,7 @@ app.post('/api/posts', auth.ensureAuthenticated, postsCtrl.create);
   - Given that you have access to a `post` object, and the `currentUser` object, inside your controllers, is there a way to determine ownership?
 
 <details>
-<summary>**Ownership Hint** (Click Here)</summary>
-<br>
+<summary>Ownership Hint (Click Here)</summary>
 ```js
 someCtrl.post.user._id === main.currentUser.user_id; // watch out for undefined!
 ```
@@ -302,8 +294,7 @@ someCtrl.post.user._id === main.currentUser.user_id; // watch out for undefined!
   - You will want to use `loginRequired` (see `public/scripts/routes.js`) in the route to ensure that only a logged in user can go to `new` and `edit` pages.
 
 <details>
-<summary>**Protected Routes Hint** (Click Here)</summary>
-<br>
+<summary>Protected Routes Hint (Click Here)</summary>
 ```js
 // public/scripts/routes.js
 
