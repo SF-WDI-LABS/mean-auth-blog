@@ -8,8 +8,7 @@ var userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   password: { type: String, select: false },
   displayName: String,
-  picture: String,
-  // posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
+  picture: String
 });
 
 userSchema.pre('save', function (next) {

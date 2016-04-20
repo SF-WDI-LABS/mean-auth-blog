@@ -21,7 +21,7 @@ function ensureAuthenticated(req, res, next) {
   if (payload.exp <= moment().unix()) {
     return res.status(401).send({ message: 'Token has expired.' });
   }
-  req.user = payload.sub;
+  req.user_id = payload.sub;
   next();
 }
 
