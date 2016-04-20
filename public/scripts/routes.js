@@ -52,7 +52,10 @@ function configRoutes($routeProvider, $locationProvider) {
     .when('/posts/new', {
       templateUrl: 'templates/posts/new.html',
       controller: 'PostsNewController',
-      controllerAs: 'postsNewCtrl'
+      controllerAs: 'postsNewCtrl',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
     .when('/posts/:id', {
       templateUrl: 'templates/posts/show.html',
@@ -62,7 +65,10 @@ function configRoutes($routeProvider, $locationProvider) {
     .when('/posts/:id/edit', {
       templateUrl: 'templates/posts/edit.html',
       controller: 'PostsEditController',
-      controllerAs: 'postsEditCtrl'
+      controllerAs: 'postsEditCtrl',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
     .otherwise({redirectTo: '/'});
 
