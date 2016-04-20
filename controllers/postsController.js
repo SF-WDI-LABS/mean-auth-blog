@@ -38,9 +38,12 @@ function show(req, res){
 
 function update(req, res){
   var query = {
-    user: req.user_id,
     _id: req.params.id
   };
+
+  if (req.user_id) {
+    query.user = req.user_id;
+  }
 
   Post
     .findOneAndUpdate(query, req.body)
@@ -55,9 +58,12 @@ function update(req, res){
 
 function destroy(req, res){
   var query = {
-    user: req.user_id,
     _id: req.params.id
   };
+
+  if (req.user_id) {
+    query.user = req.user_id;
+  }
 
   Post
     .findOneAndRemove(query)
