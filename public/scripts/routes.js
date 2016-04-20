@@ -59,6 +59,11 @@ function configRoutes($routeProvider, $locationProvider) {
       controller: 'PostsShowController',
       controllerAs: 'postsShowCtrl'
     })
+    .when('/posts/:id/edit', {
+      templateUrl: 'templates/posts/edit.html',
+      controller: 'PostsEditController',
+      controllerAs: 'postsEditCtrl'
+    })
     .otherwise({redirectTo: '/'});
 
 
