@@ -22,10 +22,8 @@ function UserService($http, $q, $auth){
 
   //// UserService Methods
 
-  function setCurrentUser(user){
-    console.log("newly updated", user)
-    console.log("jwt user", $auth.getPayload())
-    var user = user || $auth.getPayload();
+  function setCurrentUser(){
+    var user = $auth.getPayload();
     return angular.extend(self.user, user || empty_user);
   }
 

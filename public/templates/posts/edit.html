@@ -1,9 +1,15 @@
-<form>
+<div class="pull-right col-xl-4">
+  <a class="btn btn-warning col-xl-2" ng-href="/">Discard Changes</a>
+  <a class="btn btn-danger col-xl-2" ng-click="postsEditCtrl.destroy()">Delete Post</a>
+  <hr>
+</div>
+<form ng-submit="postsEditCtrl.update()">
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Title">
+    <input type="text" class="form-control" placeholder="Title" ng-model="postsEditCtrl.post.title">
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Content">
+    <textarea class="form-control" placeholder="Content" ng-model="postsEditCtrl.post.content"></textarea>
   </div>
-  <input type="submit" value="Create Post" class="btn btn-block btn-info">
+  <input type="submit" value="Update Post" class="btn btn-block btn-info">
 </form>
+
