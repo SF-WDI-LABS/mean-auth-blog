@@ -3,17 +3,17 @@ var db = require("./models");
 var user_a = {
   email: "a",
   password: "a",
-  displayName: "a"
+  displayName: "Alan Perlis"
 }
 
 var posts = [
   {
     title: "The early bird",
-    content: "In software systems, it is often the early bird that makes the worm. -- Alan Perlis"
+    content: "In software systems, it is often the early bird that makes the worm."
   },
   {
     title: "Purpose",
-    content: "Every program has (at least) two purposes: the one for which it was written, and another for which it wasn't.  -- Alan Perlis"
+    content: "Every program has (at least) two purposes: the one for which it was written, and another for which it wasn't."
   },
   {
     title: "Moral",
