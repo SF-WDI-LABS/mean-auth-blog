@@ -2,10 +2,10 @@
 <hr>
 
 
-<p ng-if="!home.posts.length">No posts yet.</p>
+<p ng-if="!postsIndexCtrl.posts.length">No posts yet.</p>
 
-<div ng-if="home.posts.length">
-  <div ng-repeat="post in home.posts">
+<div ng-if="postsIndexCtrl.posts.length">
+  <div ng-repeat="post in postsIndexCtrl.posts">
     <p>
       <strong><a ng-href="/posts/{{post._id}}">{{post.title}}</a></strong> - {{post.content}} -- {{post.user.displayName}}
     </p>

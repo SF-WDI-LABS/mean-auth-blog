@@ -11,7 +11,7 @@ function configRoutes($routeProvider, $locationProvider) {
     .when('/', {
       templateUrl: 'templates/posts/index.html',
       controller: 'PostsIndexController',
-      controllerAs: 'home'
+      controllerAs: 'postsIndexCtrl'
     })
     .when('/signup', {
       templateUrl: 'templates/user/signup.html',
@@ -47,16 +47,18 @@ function configRoutes($routeProvider, $locationProvider) {
     .when('/posts', {
       templateUrl: 'templates/posts/index.html',
       controller: 'PostsIndexController',
-      controllerAs: 'home'
+      controllerAs: 'postsIndexCtrl'
     })
     .otherwise({redirectTo: '/'});
 
 
-    function skipIfLoggedIn($q, $auth) {
-      return $auth.isAuthenticated();
+    function skipIfLoggedIn($location, $auth) {
+      if ($auth.isAuthenticated()) {
+        $location.path('/');
+      }
     }
 
-    function loginRequired($q, $location, $auth) {
+    function loginRequired($location, $auth) {
       if (!$auth.isAuthenticated()) {
         $location.path('/login');
       }

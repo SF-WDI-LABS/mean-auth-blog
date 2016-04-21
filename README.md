@@ -50,7 +50,7 @@ To begin, let's create a new angular controller, template, and route for creatin
       * and a field for `content` (use `ng-model="postsNewCtrl.post.content"`)
       * and a button to "save".
   * When a user clicks "save" (having filled out the form)...
-    * they should trigger a `on-submit="postsNewCtrl.create()"` method on the `form`(!)
+    * they should trigger a `ng-submit="postsNewCtrl.create()"` method on the `form`(!)
     * and the `create()` method should make an $http request to `POST /api/posts` using the data in `vm.post`.
     * and their post should be saved to the database
     * and the server should respond with the newly created post and `_id` (e.g. 12345)
@@ -108,11 +108,6 @@ function PostsNewController ($location, $http) {
         - using e.g. `{{postsShowCtrl.title}}`
     * and a button to `edit`
       * and be redirected to `/posts/12345/edit` 
-    * and a button to `delete`
-      * and should trigger a `on-click="postsShowCtrl.destroy()"` method on the `button`(!)
-      * and the `destroy()` methods should make an `$http` request to `DELETE /api/posts/12345`
-      * and on success, be redirected to `/` or `/posts` (posts index).
-      * BONUS: and see the message "Successfully deleted post" below the navbar.
 
 <details>
 <summary>Javascript Solution (Click Here)</summary>
@@ -165,14 +160,15 @@ function PostsShowController ($location, $http, $routeParams) {
       * and be redirected to `/posts/12345`
       * BONUS: and a pop-up, confirmation dialog that says "Are you sure you want to discard your changes?"
     * and a button to `Save Changes`
-      * that should trigger a `on-submit="postsEditCtrl.update()"` on the `form`(!)
+      * that should trigger a `ng-submit="postsEditCtrl.update()"` on the `form`(!)
       * and the `update()` method should make an `$http` request to the server, using the data in `vm.post`
       * and on success, be redirected to `/posts/12345` (show).
     * and a button to `Delete Post`
-      * that should trigger a `on-click="postsEditCtrl.destroy()"` on the `button`
-      * and the `destroy()` method should make an `$http` delete request to the server
-      * and on success, redirect the user to `/` or `/posts` (index)
-      * BONUS: and a pop-up, confirmation dialog that says "Are you sure you want to delete this post?"
+      * that should trigger a `ng-click="postsEditCtrl.destroy()"` on the `button` (!)
+      * and the `destroy()` method should make an `$http` delete request request to `DELETE /api/posts/12345`
+      * and on success, redirected the user to `/` or `/posts` (posts index).
+      * BONUS: and see the message "Successfully deleted post" below the navbar.
+      * BONUS: add a pop-up, confirmation dialog that says "Are you sure you want to delete this post?"
 
 <details>
 <summary>Javascript Solution (Click Here)</summary>
@@ -290,20 +286,7 @@ app.post('/api/posts', auth.ensureAuthenticated, postsCtrl.create);
 ```
 </details>
 
-#### 2.2 Hiding Buttons from Visitors (Client)
-* Only _logged in_ users should be able to see buttons for `new`, `edit`, and `delete`.
-  - `ng-show="main.currentUser.isLoggedIn()"`
-* **BONUS**: Only the _owner_ of the blog post should see options to `edit` and `delete` the post.
-  - Given that you have access to a `post` object, and the `currentUser` object, inside your controllers, is there a way to determine ownership?
-
-<details>
-<summary>Ownership Hint (Click Here)</summary>
-```js
-someCtrl.post.user._id === main.currentUser.user_id; // watch out for undefined!
-```
-</details>
-
-#### 2.3 Protecting Client Routes (Client)
+#### 2.2 Protecting Client Routes (Client)
 * Only a logged in user should be able to visit pages for `new` and `edit`.
   - You will want to use `loginRequired` (see `public/scripts/routes.js`) in the route to ensure that only a logged in user can go to `new` and `edit` pages.
 
@@ -323,6 +306,25 @@ someCtrl.post.user._id === main.currentUser.user_id; // watch out for undefined!
 ```
 </details>
 
+#### 2.3 Hiding Buttons from Visitors (Client)
+* Only _logged in_ users should be able to see buttons for `new`, `edit`, and `delete`.
+
+<details>
+<summary>Button for Logged In Users Hint (Click Here)</summary>
+```js
+ng-show="main.currentUser.isLoggedIn()"
+```
+</details>
+
+* **BONUS**: (Please run `node seed.js` to wipe your database). Only the _owner_ of the blog post should see options to `edit` and `delete` the post.
+  - Given that you have access to a `post` object, and the `currentUser` object, inside your controllers, is there a way to determine ownership?
+
+<details>
+<summary>Ownership Hint (Click Here)</summary>
+```js
+someCtrl.post.user._id === main.currentUser.user_id; // watch out for undefined!
+```
+</details>
 
 ## Bonuses
 1. Refactor to use a PostService (or a `Post` resource using `ngResource`), and inject your service into each of your post controllers.

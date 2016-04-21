@@ -7,8 +7,7 @@ var userSchema = new Schema({
   updated: { type: Date },
   email: { type: String, unique: true, lowercase: true },
   password: { type: String, select: false },
-  displayName: String,
-  picture: String
+  displayName: String
 });
 
 userSchema.pre('save', function (next) {
