@@ -2,4 +2,4 @@
 <p>{{postsShowCtrl.post.content}}</p>
 <a class="btn btn-primary"
     ng-href="/posts/{{postsShowCtrl.post._id}}/edit"
-    ng-show="main.currentUser.isLoggedIn()">Edit Post</a>
+    ng-show="postsShowCtrl.post.user._id === main.currentUser.user_id">Edit Post</a>
