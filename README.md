@@ -18,8 +18,7 @@ You have been provided with MEAN Stack Application with user **authentication** 
 1. Run the seed tasks (`node seed.js`) to create a default user and some posts.
 
 1. Navigate to `localhost:9000` in the browser. You should see an empty page and an angry red error message in the Chrome console.
-
-  > You should see `Error: ENOENT, no such file or directory '.env'` in your terminal
+  * > You should see `Error: ENOENT, no such file or directory '.env'` in your terminal
 
 1. To fix it, add a ["dot env"](https://github.com/SF-WDI-LABS/mean-auth-seed) file, called **`.env`**, to the root directory. Add this line to the file:
 
@@ -105,7 +104,6 @@ function PostsNewController ($location, $http) {
   * When a user visits `/posts/12345` on the client...
     * they should make an `$http` request to `GET /api/posts/12345`...
     * and they should see the `title` and `content` of post 12345...
-        - using e.g. `{{postsShowCtrl.title}}`
     * and a button to `edit`
       * and be redirected to `/posts/12345/edit` 
 
@@ -256,7 +254,7 @@ function PostsEditController ($location, $http, $routeParams) {
 
 We are using [Satellizer](https://github.com/sahat/satellizer#authloginuser-options) (an angular library), [JWT Simple](https://www.npmjs.com/package/jwt-simple) (an npm library for creating and parsing JWT tokens), and our own custom `authentication` middleware (see `middleware/auth.js`).
 
-Before adding *authorization**, please familiarize yourself with `middleware/auth.js`. Try to answer the following questions:
+Before adding *authorization*, please familiarize yourself with `middleware/auth.js`. Try to answer the following questions:
   * What is a JWT token?
     - Where does it live?
   * What does it mean to be "logged in"?
@@ -287,7 +285,7 @@ app.post('/api/posts', auth.ensureAuthenticated, postsCtrl.create);
 </details>
 
 #### 2.2 Protecting Client Routes (Client)
-* Only a logged in user should be able to visit pages for `new` and `edit`.
+Only a logged in user should be able to visit pages for `new` and `edit`.
   - You will want to use `loginRequired` (see `public/scripts/routes.js`) in the route to ensure that only a logged in user can go to `new` and `edit` pages.
 
 <details>
@@ -307,7 +305,7 @@ app.post('/api/posts', auth.ensureAuthenticated, postsCtrl.create);
 </details>
 
 #### 2.3 Hiding Buttons from Visitors (Client)
-* Only _logged in_ users should be able to see buttons for `new`, `edit`, and `delete`.
+Only _logged in_ users should be able to see buttons for `new`, `edit`, and `delete`.
 
 <details>
 <summary>Button for Logged In Users Hint (Click Here)</summary>
@@ -316,7 +314,7 @@ ng-show="main.currentUser.isLoggedIn()"
 ```
 </details>
 
-* **BONUS**: (Please run `node seed.js` to wipe your database). Only the _owner_ of the blog post should see options to `edit` and `delete` the post.
+BONUS: (Please run `node seed.js` to wipe your database). Only the _owner_ of the blog post should see options to `edit` and `delete` the post.
   - Given that you have access to a `post` object, and the `currentUser` object, inside your controllers, is there a way to determine ownership?
 
 <details>
